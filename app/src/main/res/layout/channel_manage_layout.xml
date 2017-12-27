@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_channel_manage"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x50"
+        android:layout_marginStart="@dimen/x50"
+        android:layout_marginTop="@dimen/y50"
+        android:text="拖动图标进行排序"
+        android:textColor="#FF333333"
+        android:textSize="14sp" />
+
+    <com.sinashow.headline.widget.DragGridView
+        android:id="@+id/channel_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x50"
+        android:layout_marginRight="@dimen/x50"
+        android:layout_marginTop="@dimen/y150"
+        android:columnWidth="@dimen/y297"
+        android:gravity="center"
+        android:horizontalSpacing="@dimen/x44"
+        android:listSelector="@android:color/transparent"
+        android:numColumns="3"
+        android:scrollbars="vertical"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="@dimen/y44" />
+
+</FrameLayout>

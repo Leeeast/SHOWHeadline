@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="black_overlay">#66000000</color>
+
+
+    <color name="transparent">#00000000</color>
+    <color name="white">#ffffffff</color>
+    <color name="black">#ff000000</color>
+
+
+    <color name="app_bg_white">#ffffffff</color>
+    <color name="common_line">#ffdddddd</color>
+    <color name="main_tab_bg">#fffefefe</color>
+    <color name="main_tab_txt_p">#FFFCC914</color>
+    <color name="main_tab_txt_n">#FFAAB1C4</color>
+    <color name="title_back">#dd181818</color>
+
+    <color name="title_text_color">#ffffffff</color>
+    <color name="detail_title_text_color">#ff999999</color>
+
+
+</resources>

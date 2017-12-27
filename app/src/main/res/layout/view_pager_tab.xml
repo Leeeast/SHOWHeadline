@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/x223"
+    android:layout_height="@dimen/y130"
+    android:background="@drawable/bg_page_tab"
+    android:paddingTop="@dimen/y20"
+    android:gravity="center_horizontal"
+    android:textColor="#FFFFFFFF"
+    android:textSize="16sp"
+    android:focusable="true"/>

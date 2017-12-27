@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_news_detail_title_bar"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/y130"
+    android:background="@mipmap/channel_bg"
+    android:clickable="true">
+
+
+
+    <ImageView
+        android:id="@+id/btn_back"
+        android:layout_width="@dimen/x100"
+        android:layout_height="@dimen/y100"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="@dimen/x25"
+        android:layout_gravity="center_vertical"
+        android:onClick="doBack"
+        android:src="@mipmap/tool_back1" />
+
+    <TextView
+        android:id="@+id/title"
+        style="@style/detail_title_text_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:singleLine="true"
+        android:textColor="#ffffffff" />
+
+</FrameLayout>

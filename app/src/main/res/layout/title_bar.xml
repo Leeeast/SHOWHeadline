@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_title"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/y130"
+    android:layout_gravity="top"
+    android:background="@mipmap/channel_bg"
+    android:orientation="horizontal"
+    tools:showIn="@layout/activity_main">
+
+    <com.sinashow.headline.widget.TabPageIndicator
+        android:id="@+id/indicator"
+        android:layout_width="@dimen/x968"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/y10" />
+
+
+    <LinearLayout
+        android:id="@+id/channel_man_title"
+        android:layout_width="@dimen/x968"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/x112"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="频道管理"
+            android:textColor="#FFFFFFFF"
+            android:textSize="17sp" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/channel_edit"
+        android:layout_width="@dimen/x112"
+        android:layout_height="@dimen/y130"
+        android:paddingTop="@dimen/y10"
+        android:src="@mipmap/channel_edit"
+        android:visibility="gone" />
+</LinearLayout>

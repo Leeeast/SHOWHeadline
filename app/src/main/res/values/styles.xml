@@ -1,0 +1,33 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <!-- style name以及它所继承的系统Theme主题 -->
+    <style name="Theme.Launcher" parent="AppTheme.NoActionBar">
+        <!-- 是否允许有标题栏 -->
+        <item name="android:windowNoTitle">true</item>
+        <!--是否全屏-->
+        <item name="android:windowFullscreen">false</item>
+        <!-- 提示背景图片 -->
+        <item name="android:windowBackground">@drawable/bg_launch</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <!-- 是否允许背景灰暗 -->
+        <item name="android:backgroundDimEnabled">false</item>
+
+        <item name="android:windowAnimationStyle">@style/fadeoutAnimation</item>
+        <item name="android:windowHideAnimation">@anim/fade_out</item>
+        <item name="android:windowExitAnimation">@anim/fade_out</item>
+    </style>
+
+</resources>
