@@ -12,6 +12,7 @@ import com.caishi.venus.details.DetailsFragment;
 import com.caishi.venus.details.NewsDetailsLoader;
 import com.sinashow.headline.R;
 import com.sinashow.headline.constant.MFSDKSetting;
+import com.sinashow.headline.utils.statusBar.ImmerseStatusBar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,8 +27,8 @@ public class InfoDetailActivity extends Activity implements NewsDetailsLoader.We
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
+        ImmerseStatusBar.myStatusBar(this);
         setContentView(R.layout.activity_detail_info);
         int flags = (MFSDKSetting.sIsShowOriginContent ? NewsDetailsLoader.FLAG_ORIGIN_WEB : 0)
                 | (MFSDKSetting.sIsShowShareBar ? NewsDetailsLoader.FLAG_SHARE_BAR : 0);
@@ -40,6 +41,18 @@ public class InfoDetailActivity extends Activity implements NewsDetailsLoader.We
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+        findViewById(R.id.iv_more).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(InfoDetailActivity.this, "攻城狮努力开发中...", Toast.LENGTH_SHORT).show();
+            }
+        });
+        findViewById(R.id.iv_share).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(InfoDetailActivity.this, "攻城狮努力开发中...", Toast.LENGTH_SHORT).show();
             }
         });
     }

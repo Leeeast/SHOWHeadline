@@ -15,11 +15,14 @@ import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.caishi.venus.api.bean.news.ChannelInfo;
 import com.caishi.venus.api.remote.ChannelsLoader;
 import com.caishi.venus.ui.NewsPagerAdapter;
 import com.caishi.venus.ui.VenusApi;
+import com.caishi.venus.ui.config.NewsSettings;
 import com.sinashow.headline.R;
 import com.sinashow.headline.constant.MFSDKSetting;
 import com.sinashow.headline.widget.DragAdapter;
@@ -33,7 +36,7 @@ import java.util.List;
  * Powered by yueke
  */
 
-public class FeedFragment extends Fragment {
+public class FeedFragment extends Fragment implements View.OnClickListener {
 
     public static final String FRAGMENT_TAG = FeedFragment.class.getSimpleName();
 
@@ -47,6 +50,7 @@ public class FeedFragment extends Fragment {
     private DragAdapter mDragAdapter;
     private int mLastTabIndex;
     private List<ChannelInfo> mUserChannelList;
+    private TextView mTvTitle;
 
     public static FeedFragment newInstance() {
         FeedFragment feedFragment = new FeedFragment();
@@ -68,11 +72,21 @@ public class FeedFragment extends Fragment {
 
     @Override
     public void onViewCreated(final View view, @Nullable Bundle savedInstanceState) {
+        // 设置布局方式
+        if (MFSDKSetting.sIsTextImage) {
+            NewsSettings.sLayoutType = NewsSettings.LAYOUT_TYPE.LAYOUT_TYPE_TEXT_IMAGE;
+        } else {
+            NewsSettings.sLayoutType = NewsSettings.LAYOUT_TYPE.LAYOUT_TYPE_IMAGE_TEXT;
+        }
         mViewPager = (ViewPager) view.findViewById(R.id.vp);
         mPageIndicator = (TabPageIndicator) view.findViewById(R.id.indicator);
         mFrameChannelEdit = (FrameLayout) view.findViewById(R.id.ll_channel_manage);
         mIvChannelEdit = (ImageView) view.findViewById(R.id.channel_edit);
         mGridView = (DragGridView) view.findViewById(R.id.channel_list);
+
+        view.findViewById(R.id.iv_search).setOnClickListener(this);
+        mTvTitle = view.findViewById(R.id.tv_title);
+        mTvTitle.setText(getString(R.string.app_name));
 
         if (MFSDKSetting.sIsShowChannelManager) {
             mIvChannelEdit.setVisibility(View.VISIBLE);
@@ -243,5 +257,14 @@ public class FeedFragment extends Fragment {
             mChannelsLoader.release();
         }
         VenusApi.release();
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.iv_search:
+                Toast.makeText(getContext(), "功能开发中", Toast.LENGTH_SHORT).show();
+                break;
+        }
     }
 }

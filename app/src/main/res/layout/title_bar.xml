@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/y130"
     android:layout_gravity="top"
-    android:background="@mipmap/channel_bg"
+    android:background="@color/feed_tab_bg"
     android:orientation="horizontal"
     tools:showIn="@layout/activity_main">
 
@@ -13,13 +13,15 @@
         android:id="@+id/indicator"
         android:layout_width="@dimen/x968"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/y10" />
+        android:layout_marginTop="@dimen/y10"
+        android:layout_weight="1.0" />
 
 
     <LinearLayout
         android:id="@+id/channel_man_title"
         android:layout_width="@dimen/x968"
         android:layout_height="match_parent"
+        android:layout_weight="1.0"
         android:gravity="center"
         android:orientation="horizontal"
         android:paddingLeft="@dimen/x112"
@@ -30,7 +32,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="频道管理"
-            android:textColor="#FFFFFFFF"
+            android:textColor="@color/feed_tab_txt_s"
             android:textSize="17sp" />
     </LinearLayout>
 
@@ -38,6 +40,8 @@
         android:id="@+id/channel_edit"
         android:layout_width="@dimen/x112"
         android:layout_height="@dimen/y130"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
         android:paddingTop="@dimen/y10"
         android:src="@mipmap/channel_edit"
         android:visibility="gone" />

@@ -4,6 +4,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <include layout="@layout/layout_title_main" />
+
     <FrameLayout
         android:id="@+id/root"
         android:layout_width="match_parent"
@@ -13,7 +15,7 @@
             android:id="@+id/vp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/y130"/>
+            android:layout_marginTop="@dimen/y130" />
 
         <include
             layout="@layout/channel_manage_layout"

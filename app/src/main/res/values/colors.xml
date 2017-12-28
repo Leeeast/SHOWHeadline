@@ -18,6 +18,8 @@
     <color name="main_tab_txt_p">#FFFCC914</color>
     <color name="main_tab_txt_n">#FFAAB1C4</color>
     <color name="title_back">#dd181818</color>
+    <color name="feed_tab_bg">#ddF6F6F6</color>
+    <color name="feed_tab_txt_s">#dd616372</color>
 
     <color name="title_text_color">#ffffffff</color>
     <color name="detail_title_text_color">#ff999999</color>

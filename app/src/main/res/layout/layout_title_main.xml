@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/DIMEN_50PX"
+    android:layout_height="@dimen/DIMEN_40PX"
     android:background="@color/white">
 
     <TextView
@@ -11,4 +11,12 @@
         android:layout_gravity="center"
         android:textColor="@color/black"
         android:textSize="15sp" />
+
+    <ImageView
+        android:id="@+id/iv_search"
+        android:layout_width="@dimen/DIMEN_25PX"
+        android:layout_height="@dimen/DIMEN_25PX"
+        android:layout_gravity="center_vertical|right"
+        android:layout_marginRight="@dimen/DIMEN_10PX"
+        android:background="@mipmap/icon_search" />
 </FrameLayout>
