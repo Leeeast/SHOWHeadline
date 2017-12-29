@@ -6,7 +6,9 @@
 
     <string name="exit_app_tips">再按一次退出</string>
 
-
+    <string name="splash_right_declare">All Rights reserved SINASHOW</string>
+    <string name="splash_txt1">懂她的</string>
+    <string name="splash_txt2">才是真我</string>
 
 
 </resources>

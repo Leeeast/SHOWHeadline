@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.caishi.venus.api.bean.news.ImageInfo;
@@ -12,6 +13,7 @@ import com.caishi.venus.details.DetailsFragment;
 import com.caishi.venus.details.NewsDetailsLoader;
 import com.sinashow.headline.R;
 import com.sinashow.headline.constant.MFSDKSetting;
+import com.sinashow.headline.utils.DeviceUtils;
 import com.sinashow.headline.utils.statusBar.ImmerseStatusBar;
 
 import java.util.ArrayList;
@@ -28,7 +30,7 @@ public class InfoDetailActivity extends Activity implements NewsDetailsLoader.We
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ImmerseStatusBar.myStatusBar(this);
+        ImmerseStatusBar.setImmerseStatusBar(this, R.color.status_bar);
         setContentView(R.layout.activity_detail_info);
         int flags = (MFSDKSetting.sIsShowOriginContent ? NewsDetailsLoader.FLAG_ORIGIN_WEB : 0)
                 | (MFSDKSetting.sIsShowShareBar ? NewsDetailsLoader.FLAG_SHARE_BAR : 0);
@@ -55,6 +57,11 @@ public class InfoDetailActivity extends Activity implements NewsDetailsLoader.We
                 Toast.makeText(InfoDetailActivity.this, "攻城狮努力开发中...", Toast.LENGTH_SHORT).show();
             }
         });
+
+        FrameLayout flyTitleToot = findViewById(R.id.fly_title_root);
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) flyTitleToot.getLayoutParams();
+        layoutParams.topMargin = DeviceUtils.getStatusBarHeight(this);
+
     }
 
     /**

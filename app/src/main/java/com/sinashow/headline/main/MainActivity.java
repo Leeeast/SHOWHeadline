@@ -10,7 +10,6 @@ import com.sinashow.headline.R;
 import com.sinashow.headline.base.BaseActivity;
 import com.sinashow.headline.constant.Constant;
 import com.sinashow.headline.main.fragment.FeedFragment;
-import com.sinashow.headline.main.fragment.MainFragment;
 import com.sinashow.headline.main.fragment.MineFragment;
 import com.sinashow.headline.main.fragment.TopicFragment;
 

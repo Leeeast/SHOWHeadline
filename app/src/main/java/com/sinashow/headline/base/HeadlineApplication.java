@@ -1,6 +1,7 @@
 package com.sinashow.headline.base;
 
 import android.app.Application;
+import android.content.Context;
 
 import com.caishi.venus.ui.VenusApi;
 import com.caishi.venus.ui.config.NewsSettings;
@@ -13,10 +14,20 @@ import com.sinashow.headline.main.InfoDetailActivity;
  */
 
 public class HeadlineApplication extends Application {
+    public static HeadlineApplication showApplication;
     @Override
     public void onCreate() {
         super.onCreate();
+        showApplication = this;
         init();
+    }
+    /**
+     * 获取应用ApplicationContext
+     *
+     * @return
+     */
+    public static Context getAppContext() {
+        return showApplication;
     }
 
     /**

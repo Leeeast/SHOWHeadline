@@ -21,6 +21,7 @@ import com.facebook.imagepipeline.common.ResizeOptions;
 import com.facebook.imagepipeline.request.ImageRequest;
 import com.facebook.imagepipeline.request.ImageRequestBuilder;
 import com.sinashow.headline.R;
+import com.sinashow.headline.utils.statusBar.ImmerseStatusBar;
 
 import java.util.ArrayList;
 
@@ -34,6 +35,7 @@ public class ImageShowActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ImmerseStatusBar.setImmerseStatusBar(this, R.color.black);
         setContentView(R.layout.activity_image);
         initView();
         initData();

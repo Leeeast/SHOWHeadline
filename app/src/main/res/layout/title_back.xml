@@ -2,29 +2,35 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/ll_main_back"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/DIMEN_45PX"
-    android:background="@color/white">
+    android:layout_height="wrap_content"
+    android:background="@mipmap/status_bar_bg">
 
-    <ImageView
-        android:id="@+id/iv_main_back"
-        android:layout_width="@dimen/DIMEN_45PX"
-        android:layout_height="@dimen/DIMEN_45PX"
-        android:layout_gravity="center_vertical"
-        android:background="@mipmap/icon_back2" />
+    <FrameLayout
+        android:id="@+id/fly_title_root"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_45PX">
 
-    <ImageView
-        android:id="@+id/iv_more"
-        android:layout_width="@dimen/DIMEN_40PX"
-        android:layout_height="@dimen/DIMEN_40PX"
-        android:layout_gravity="right|center_vertical"
-        android:background="@mipmap/ic_action_more" />
+        <ImageView
+            android:id="@+id/iv_main_back"
+            android:layout_width="@dimen/DIMEN_40PX"
+            android:layout_height="@dimen/DIMEN_40PX"
+            android:layout_gravity="center_vertical"
+            android:background="@mipmap/ic_action_back" />
 
-    <ImageView
-        android:id="@+id/iv_share"
-        android:layout_width="@dimen/DIMEN_32PX"
-        android:layout_height="@dimen/DIMEN_32PX"
-        android:layout_gravity="right|center_vertical"
-        android:layout_marginRight="@dimen/DIMEN_45PX"
-        android:background="@mipmap/ic_action_share" />
+        <ImageView
+            android:id="@+id/iv_more"
+            android:layout_width="@dimen/DIMEN_40PX"
+            android:layout_height="@dimen/DIMEN_40PX"
+            android:layout_gravity="right|center_vertical"
+            android:background="@mipmap/ic_action_more" />
+
+        <ImageView
+            android:id="@+id/iv_share"
+            android:layout_width="@dimen/DIMEN_32PX"
+            android:layout_height="@dimen/DIMEN_32PX"
+            android:layout_gravity="right|center_vertical"
+            android:layout_marginRight="@dimen/DIMEN_45PX"
+            android:background="@mipmap/ic_action_share" />
+    </FrameLayout>
 
 </FrameLayout>

@@ -1,22 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/DIMEN_40PX"
-    android:background="@color/white">
+    android:layout_height="wrap_content"
+    android:background="@mipmap/status_bar_bg">
 
-    <TextView
-        android:id="@+id/tv_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:textColor="@color/black"
-        android:textSize="15sp" />
+    <FrameLayout
+        android:id="@+id/fly_title_root"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_45PX">
 
-    <ImageView
-        android:id="@+id/iv_search"
-        android:layout_width="@dimen/DIMEN_25PX"
-        android:layout_height="@dimen/DIMEN_25PX"
-        android:layout_gravity="center_vertical|right"
-        android:layout_marginRight="@dimen/DIMEN_10PX"
-        android:background="@mipmap/icon_search" />
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/app_main_title"
+            android:textSize="19sp" />
+
+        <ImageView
+            android:id="@+id/iv_search"
+            android:layout_width="@dimen/DIMEN_20PX"
+            android:visibility="gone"
+            android:layout_height="@dimen/DIMEN_20PX"
+            android:layout_gravity="center_vertical|right"
+            android:layout_marginRight="@dimen/DIMEN_10PX"
+            android:background="@mipmap/icon_search" />
+    </FrameLayout>
 </FrameLayout>

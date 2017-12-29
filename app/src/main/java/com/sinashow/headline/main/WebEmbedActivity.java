@@ -15,6 +15,7 @@ import android.widget.ProgressBar;
 import com.sinashow.headline.R;
 import com.sinashow.headline.constant.MFSDKSetting;
 import com.sinashow.headline.utils.WebViewSettings;
+import com.sinashow.headline.utils.statusBar.ImmerseStatusBar;
 
 
 /**
@@ -30,6 +31,7 @@ public class WebEmbedActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ImmerseStatusBar.setImmerseStatusBar(this, R.color.status_bar);
         setContentView(R.layout.activity_web_embed);
         mWebView = (WebView) findViewById(R.id.wb_embed_details);
         WebViewSettings.initSettings(mWebView, false);

@@ -27,7 +27,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ImmerseStatusBar.myStatusBar(this);
         ImmerseStatusBar.setImmerseStatusBar(this, R.color.transparent);
         setContentView(getLayoutID());
         mUnbinder = ButterKnife.bind(this);

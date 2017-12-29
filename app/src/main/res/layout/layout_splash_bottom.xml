@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/DIMEN_125PX"
+    android:layout_gravity="bottom"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@+id/tv_right_declare"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/DIMEN_15PX"
+        android:text="@string/splash_right_declare"
+        android:textColor="@color/splash_txt"
+        android:textSize="15sp" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/tv_right_declare"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/DIMEN_20PX">
+
+        <ImageView
+            android:id="@+id/iv_icon"
+            android:layout_width="@dimen/DIMEN_46PX"
+            android:layout_height="@dimen/DIMEN_46PX"
+            android:background="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/tv_app_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/iv_icon"
+            android:layout_marginLeft="@dimen/DIMEN_9PX"
+            android:layout_toRightOf="@id/iv_icon"
+            android:text="@string/app_name"
+            android:textColor="@color/splash_txt"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/iv_icon"
+            android:layout_alignLeft="@id/tv_app_name"
+            android:text="@string/splash_txt1"
+            android:textColor="@color/splash_txt"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/iv_icon"
+            android:layout_alignRight="@id/tv_app_name"
+            android:text="@string/splash_txt2"
+            android:textColor="@color/splash_txt"
+            android:textSize="14sp" />
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -20,11 +20,12 @@ import android.widget.Toast;
 
 import com.caishi.venus.api.bean.news.ChannelInfo;
 import com.caishi.venus.api.remote.ChannelsLoader;
-import com.caishi.venus.ui.NewsPagerAdapter;
 import com.caishi.venus.ui.VenusApi;
 import com.caishi.venus.ui.config.NewsSettings;
 import com.sinashow.headline.R;
 import com.sinashow.headline.constant.MFSDKSetting;
+import com.sinashow.headline.main.adapter.NewsPagerAdapter;
+import com.sinashow.headline.utils.DeviceUtils;
 import com.sinashow.headline.widget.DragAdapter;
 import com.sinashow.headline.widget.DragGridView;
 import com.sinashow.headline.widget.TabPageIndicator;
@@ -50,7 +51,6 @@ public class FeedFragment extends Fragment implements View.OnClickListener {
     private DragAdapter mDragAdapter;
     private int mLastTabIndex;
     private List<ChannelInfo> mUserChannelList;
-    private TextView mTvTitle;
 
     public static FeedFragment newInstance() {
         FeedFragment feedFragment = new FeedFragment();
@@ -83,10 +83,15 @@ public class FeedFragment extends Fragment implements View.OnClickListener {
         mFrameChannelEdit = (FrameLayout) view.findViewById(R.id.ll_channel_manage);
         mIvChannelEdit = (ImageView) view.findViewById(R.id.channel_edit);
         mGridView = (DragGridView) view.findViewById(R.id.channel_list);
+        ImageView ivSearch = view.findViewById(R.id.iv_search);
+        ivSearch.setVisibility(View.VISIBLE);
+        ivSearch.setOnClickListener(this);
+        TextView tvTitle = view.findViewById(R.id.tv_title);
+        tvTitle.setText(getString(R.string.app_name));
 
-        view.findViewById(R.id.iv_search).setOnClickListener(this);
-        mTvTitle = view.findViewById(R.id.tv_title);
-        mTvTitle.setText(getString(R.string.app_name));
+        FrameLayout flyTitleToot = view.findViewById(R.id.fly_title_root);
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) flyTitleToot.getLayoutParams();
+        layoutParams.topMargin = DeviceUtils.getStatusBarHeight(getContext());
 
         if (MFSDKSetting.sIsShowChannelManager) {
             mIvChannelEdit.setVisibility(View.VISIBLE);

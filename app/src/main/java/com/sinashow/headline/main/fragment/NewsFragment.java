@@ -34,21 +34,21 @@ import com.caishi.venus.R.string;
 import com.caishi.venus.VenusWebEmbedActivity;
 import com.caishi.venus.api.bean.http.HttpError;
 import com.caishi.venus.api.bean.news.NewsInfo;
-import com.caishi.venus.api.bean.resp.Responses;
 import com.caishi.venus.api.bean.resp.Responses.NEWS_LIST;
 import com.caishi.venus.api.misc.LogCat;
 import com.caishi.venus.api.remote.HttpCallback;
 import com.caishi.venus.api.remote.HttpCreator;
 import com.caishi.venus.api.remote.HttpMessage;
-import com.caishi.venus.api.remote.NetworkMonitor;
 import com.caishi.venus.details.NewsDetailsLoader;
-import com.caishi.venus.ui.NewsListAdapter;
 import com.caishi.venus.ui.config.NewsSettings;
 import com.caishi.venus.ui.store.NewsStore;
 import com.caishi.venus.ui.view.pulltorefresh.PullToRefreshBase;
 import com.caishi.venus.ui.view.pulltorefresh.PullToRefreshBase.Mode;
 import com.caishi.venus.ui.view.pulltorefresh.PullToRefreshBase.OnRefreshListener2;
 import com.caishi.venus.ui.view.pulltorefresh.PullToRefreshListView;
+import com.sinashow.headline.R;
+import com.sinashow.headline.main.adapter.NewsListAdapter;
+import com.sinashow.headline.utils.LogUtil;
 
 import java.util.List;
 
@@ -111,6 +111,7 @@ public class NewsFragment extends Fragment implements OnItemClickListener {
             }
         });
         this.mTvNewsRefreshNote = (TextView) LayoutInflater.from(this.getActivity()).inflate(layout.news_refresh_note, (ViewGroup) null);
+        this.mTvNewsRefreshNote.setBackgroundColor(getResources().getColor(R.color.app_theme));
         ((ListView) this.mPullToRefresh.getRefreshableView()).addHeaderView(this.mTvNewsRefreshNote, (Object) null, false);
         this.mTvNewsRefreshNote.setHeight(0);
         this.mAnimHeight = (int) this.getActivity().getResources().getDimension(dimen.y70);
@@ -232,6 +233,39 @@ public class NewsFragment extends Fragment implements OnItemClickListener {
             @Override
             public void onCompleted(NEWS_LIST var1x, HttpError httpError) {
                 if (var1x != null && var1x.data != null) {
+                    LogUtil.i("news_list", "var1x.data = " + ((List) var1x.data));
+                    List<NewsInfo> data = var1x.data;
+                    for (NewsInfo newsInfo : data) {
+                        LogUtil.i("newsInfos", "engineType = " + newsInfo.engineType);
+                        LogUtil.i("newsInfos", "srcDisplay =" + newsInfo.srcDisplay);
+                        LogUtil.i("newsInfos", "layoutType =" + newsInfo.layoutType);
+                        LogUtil.i("newsInfos", "engine =" + newsInfo.engine);
+                        LogUtil.i("newsInfos", "isRead =" + newsInfo.isRead);
+                        LogUtil.i("newsInfos", "coverImage.url =" + newsInfo.coverImage.url);
+                        LogUtil.i("newsInfos", "subTitle =" + newsInfo.subTitle);
+                        LogUtil.i("newsInfos", "adId =" + newsInfo.adId);
+                        LogUtil.i("newsInfos", "adType =" + newsInfo.adType);
+                        LogUtil.i("newsInfos", "adName =" + newsInfo.adName);
+                        LogUtil.i("newsInfos", "adTraceId =" + newsInfo.adTraceId);
+                        LogUtil.i("newsInfos", "sspId =" + newsInfo.sspId);
+                        LogUtil.i("newsInfos", "sspAdId =" + newsInfo.sspAdId);
+                        LogUtil.i("newsInfos", "imageUrl =" + newsInfo.imageUrl);
+                        LogUtil.i("newsInfos", "source =" + newsInfo.source);
+                        LogUtil.i("newsInfos", "iconUrl =" + newsInfo.iconUrl);
+                        LogUtil.i("newsInfos", "detailUrl =" + newsInfo.detailUrl);
+                        LogUtil.i("newsInfos", "sourceImageUrl =" + newsInfo.sourceImageUrl);
+                        LogUtil.i("newsInfos", "clickCallbackUrls =" + newsInfo.clickCallbackUrls);
+                        LogUtil.i("newsInfos", "exposureCallbackUrls =" + newsInfo.exposureCallbackUrls);
+                        LogUtil.i("newsInfos", "isRefreshBar =" + newsInfo.isRefreshBar());
+                        LogUtil.i("newsInfos", "isGif =" + newsInfo.isGif());
+                        LogUtil.i("newsInfos", "isBigPic =" + newsInfo.isBigPic());
+                        LogUtil.i("newsInfos", "isJoke =" + newsInfo.isJoke());
+                        LogUtil.i("newsInfos", "isTextPic =" + newsInfo.isTextPic());
+                        LogUtil.i("newsInfos", "isThreePic =" + newsInfo.isThreePic());
+                        LogUtil.i("newsInfos", "isAd =" + newsInfo.isAd());
+                        LogUtil.i("newsInfos", "isNews =" + newsInfo.isNews());
+                        LogUtil.i("newsInfos", "isOrigin =" + newsInfo.isOrigin());
+                    }
                     int var5 = ((List) var1x.data).size();
                     if (var1 == 0) {
                         if (NewsFragment.this.isAdded()) {
@@ -241,7 +275,6 @@ public class NewsFragment extends Fragment implements OnItemClickListener {
                             } else {
                                 var6 = NewsFragment.this.getString(string.feed_no_more_load);
                             }
-
                             NewsFragment.this.a(var6);
                         }
 

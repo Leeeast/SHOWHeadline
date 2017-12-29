@@ -13,7 +13,7 @@ import java.lang.ref.WeakReference;
 public class SplashActivity extends BaseActivity {
 
     private static final int CODE_2MAIN = 0;
-    private static final int DELAY_2MAIN = 1000;
+    private static final int DELAY_2MAIN = 1500;
 
     private static class SmartHandler extends Handler {
 
