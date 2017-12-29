@@ -30,7 +30,7 @@ public class InfoDetailActivity extends Activity implements NewsDetailsLoader.We
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ImmerseStatusBar.setImmerseStatusBar(this, R.color.status_bar);
+        ImmerseStatusBar.setImmerseStatusBar(this, R.color.transparent);
         setContentView(R.layout.activity_detail_info);
         int flags = (MFSDKSetting.sIsShowOriginContent ? NewsDetailsLoader.FLAG_ORIGIN_WEB : 0)
                 | (MFSDKSetting.sIsShowShareBar ? NewsDetailsLoader.FLAG_SHARE_BAR : 0);
