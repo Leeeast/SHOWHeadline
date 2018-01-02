@@ -1,5 +1,5 @@
 //
-// Source code recreated from a .class file by IntelliJ IDEA
+// Source code recreated from imageView .class file by IntelliJ IDEA
 // (powered by Fernflower decompiler)
 //
 
@@ -57,21 +57,25 @@ public class NewsListAdapter extends BaseAdapter {
         return 7;
     }
 
-    public int getItemViewType(int var1) {
-        NewsInfo var2 = (NewsInfo) this.newsInfoList.get(var1);
-        // return var2.isNews()?(var2.isBigPic()?0:1):(var2.isJoke()?2:(var2.isGif()?3:(var2.isRefreshBar()?4:(var2.isThreePic()?5:(var2.isAd()?6:1)))));
-        return var2.isNews() ? (var2.isBigPic() ? 0 : (var2.isGif() ? 3 : (var2.isRefreshBar() ? 4 : (var2.isThreePic() ? 5 : (var2.isAd() ? 6 : 1))))) : (var2.isJoke() ? 2 : (var2.isGif() ? 3 : (var2.isRefreshBar() ? 4 : (var2.isThreePic() ? 5 : (var2.isAd() ? 6 : 1)))));
+    public int getItemViewType(int position) {
+        NewsInfo newsInfo = (NewsInfo) this.newsInfoList.get(position);
+        //return newsInfo.isNews() ? (newsInfo.isBigPic() ? 0 : 1) : (newsInfo.isJoke() ? 2 : (newsInfo.isGif() ? 3 : (newsInfo.isRefreshBar() ? 4 : (newsInfo.isThreePic() ? 5 : (newsInfo.isAd() ? 6 : 1)))));
+        if (newsInfo.isRefreshBar()) {
+            return 4;
+        } else {
+            if (position % 2 == 0) {
+                return 0;
+            } else {
+                return 1;
+            }
+        }
     }
 
-//    @Override
-//    public View getView(int position, View convertView, ViewGroup parent) {
-//        return null;
-//    }
 
     public View getView(int position, View convertView, ViewGroup parent) {
-        int var4 = this.getItemViewType(position);
+        int viewType = this.getItemViewType(position);
         NewsInfo newsInfo = (NewsInfo) this.newsInfoList.get(position);
-        switch (var4) {
+        switch (viewType) {
             case 0:
                 return this.inflateTypeBigPic(newsInfo, convertView, position, parent);
             case 1:
@@ -91,146 +95,147 @@ public class NewsListAdapter extends BaseAdapter {
         }
     }
 
-    private View a(NewsInfo var1, View var2, int var3, ViewGroup var4) {
+    private View a(NewsInfo newsInfo, View convertView, int position, ViewGroup parent) {
         NewsListAdapter.a var5;
-        if (var2 == null) {
-            var2 = this.mLayoutInflater.inflate(R.layout.news_item_ad_large, var4, false);
-            var5 = new NewsListAdapter.a(var2);
-            var2.setTag(var5);
+        if (convertView == null) {
+            convertView = this.mLayoutInflater.inflate(R.layout.news_item_ad_large, parent, false);
+            var5 = new NewsListAdapter.a(convertView);
+            convertView.setTag(var5);
         } else {
-            var5 = (NewsListAdapter.a) var2.getTag();
+            var5 = (NewsListAdapter.a) convertView.getTag();
         }
 
-        if (!TextUtils.isEmpty(var1.title)) {
+        if (!TextUtils.isEmpty(newsInfo.title)) {
             var5.f.setVisibility(View.VISIBLE);
-            var5.f.setText(var1.title);
+            var5.f.setText(newsInfo.title);
         } else {
             var5.f.setVisibility(View.GONE);
         }
 
-        if (!TextUtils.isEmpty(var1.source)) {
+        if (!TextUtils.isEmpty(newsInfo.source)) {
             var5.b.setVisibility(View.VISIBLE);
-            var5.b.setText(var1.source);
+            var5.b.setText(newsInfo.source);
             var5.d.setVisibility(View.GONE);
         } else {
             var5.b.setVisibility(View.GONE);
-            if (!TextUtils.isEmpty(var1.sourceImageUrl)) {
+            if (!TextUtils.isEmpty(newsInfo.sourceImageUrl)) {
                 var5.d.setVisibility(View.VISIBLE);
-                this.mImageLoader.initImageView(var5.d, var1.sourceImageUrl);
+                this.mImageLoader.initImageView(var5.d, newsInfo.sourceImageUrl);
             }
         }
 
-        if (!TextUtils.isEmpty(var1.imageUrl)) {
-            this.mImageLoader.initImageView(var5.c, var1.imageUrl);
+        if (!TextUtils.isEmpty(newsInfo.imageUrl)) {
+            this.mImageLoader.initImageView(var5.c, newsInfo.imageUrl);
         }
 
-        return var2;
+        return convertView;
     }
 
-    private View b(NewsInfo var1, View var2, int var3, ViewGroup var4) {
+    private View b(NewsInfo newsInfo, View convertView, int position, ViewGroup parent) {
         NewsListAdapter.c var5;
-        if (var2 == null) {
-            var2 = this.mLayoutInflater.inflate(R.layout.news_item_three_picture, var4, false);
+        if (convertView == null) {
+            convertView = this.mLayoutInflater.inflate(R.layout.news_item_three_picture, parent, false);
             var5 = new NewsListAdapter.c();
-            ViewStub var6 = (ViewStub) var2.findViewById(R.id.news_item_image);
-            ViewStub var7 = (ViewStub) var2.findViewById(R.id.img_news_item_3_pic_2);
-            ViewStub var8 = (ViewStub) var2.findViewById(R.id.img_news_item_3_pic_3);
+            ViewStub var6 = (ViewStub) convertView.findViewById(R.id.news_item_image);
+            ViewStub var7 = (ViewStub) convertView.findViewById(R.id.img_news_item_3_pic_2);
+            ViewStub var8 = (ViewStub) convertView.findViewById(R.id.img_news_item_3_pic_3);
             var5.a = this.mImageLoader.createImageView(var6);
             var5.b = this.mImageLoader.createImageView(var7);
             var5.c = this.mImageLoader.createImageView(var8);
-            this.a((View) var2, (NewsListAdapter.d) var5);
-            var2.setTag(var5);
+            this.a((View) convertView, (NewsHolder) var5);
+            convertView.setTag(var5);
         } else {
-            var5 = (NewsListAdapter.c) var2.getTag();
+            var5 = (NewsListAdapter.c) convertView.getTag();
         }
 
-        if (var1.imageDTOList != null && var1.imageDTOList.size() > 0) {
-            if (((ImageInfo) var1.imageDTOList.get(0)).url != null) {
-                this.mImageLoader.initImageView(var5.a, ((ImageInfo) var1.imageDTOList.get(0)).url);
+        if (newsInfo.imageDTOList != null && newsInfo.imageDTOList.size() > 0) {
+            if (((ImageInfo) newsInfo.imageDTOList.get(0)).url != null) {
+                this.mImageLoader.initImageView(var5.a, ((ImageInfo) newsInfo.imageDTOList.get(0)).url);
             }
 
-            if (var1.imageDTOList.size() > 1 && ((ImageInfo) var1.imageDTOList.get(1)).url != null) {
-                this.mImageLoader.initImageView(var5.b, ((ImageInfo) var1.imageDTOList.get(1)).url);
+            if (newsInfo.imageDTOList.size() > 1 && ((ImageInfo) newsInfo.imageDTOList.get(1)).url != null) {
+                this.mImageLoader.initImageView(var5.b, ((ImageInfo) newsInfo.imageDTOList.get(1)).url);
             }
 
-            if (var1.imageDTOList.size() > 2 && ((ImageInfo) var1.imageDTOList.get(2)).url != null) {
-                this.mImageLoader.initImageView(var5.c, ((ImageInfo) var1.imageDTOList.get(2)).url);
+            if (newsInfo.imageDTOList.size() > 2 && ((ImageInfo) newsInfo.imageDTOList.get(2)).url != null) {
+                this.mImageLoader.initImageView(var5.c, ((ImageInfo) newsInfo.imageDTOList.get(2)).url);
             }
         }
 
-        var5.f.setText(TextUtils.isEmpty(var1.summary) ? var1.title : var1.summary);
-        this.a((NewsListAdapter.d) var5, (NewsInfo) var1);
-        return var2;
+        var5.f.setText(TextUtils.isEmpty(newsInfo.summary) ? newsInfo.title : newsInfo.summary);
+        this.a((NewsHolder) var5, (NewsInfo) newsInfo);
+        return convertView;
     }
 
-    private View c(NewsInfo var1, View var2, int var3, ViewGroup var4) {
-        NewsListAdapter.d var5;
-        if (var2 == null) {
-            var2 = this.mLayoutInflater.inflate(R.layout.news_item_joke_view, var4, false);
-            var5 = new NewsListAdapter.d();
-            this.a(var2, var5);
-            var2.setTag(var5);
+    private View c(NewsInfo newsInfo, View convertView, int position, ViewGroup parent) {
+        NewsHolder var5;
+        if (convertView == null) {
+            convertView = this.mLayoutInflater.inflate(R.layout.news_item_joke_view, parent, false);
+            var5 = new NewsHolder();
+            this.a(convertView, var5);
+            convertView.setTag(var5);
         } else {
-            var5 = (NewsListAdapter.d) var2.getTag();
+            var5 = (NewsHolder) convertView.getTag();
         }
 
-        var5.f.setText(TextUtils.isEmpty(var1.summary) ? var1.title : var1.summary);
-        this.a(var5, var1);
-        return var2;
+        var5.f.setText(TextUtils.isEmpty(newsInfo.summary) ? newsInfo.title : newsInfo.summary);
+        this.a(var5, newsInfo);
+        return convertView;
     }
 
-    private View inflateTypeBigPic(NewsInfo var1, View var2, int var3, ViewGroup var4) {
-        NewsListAdapter.b var5;
-        if (var2 == null) {
-            var2 = this.mLayoutInflater.inflate(R.layout.news_item_big_picture, var4, false);
-            var5 = new NewsListAdapter.b();
-            ViewStub var6 = (ViewStub) var2.findViewById(R.id.img_news_item_picture);
-            var5.a = this.mImageLoader.createImageView(var6);
-            this.a((View) var2, (NewsListAdapter.d) var5);
-            var2.setTag(var5);
+    private View inflateTypeBigPic(NewsInfo newsInfo, View convertView, int position, ViewGroup parent) {
+        PicHolder bigPicHolder;
+        if (convertView == null) {
+            convertView = this.mLayoutInflater.inflate(R.layout.news_item_big_picture, parent, false);
+            bigPicHolder = new PicHolder();
+            ViewStub viewStub = (ViewStub) convertView.findViewById(R.id.img_news_item_picture);
+            bigPicHolder.imageView = this.mImageLoader.createImageView(viewStub);
+            this.a(convertView, bigPicHolder);
+            convertView.setTag(bigPicHolder);
         } else {
-            var5 = (NewsListAdapter.b) var2.getTag();
+            bigPicHolder = (PicHolder) convertView.getTag();
         }
 
-        if (var1.imageDTOList != null && var1.imageDTOList.size() > 0) {
-            this.mImageLoader.initImageView(var5.a, ((ImageInfo) var1.imageDTOList.get(0)).url);
+        if (newsInfo.imageDTOList != null && newsInfo.imageDTOList.size() > 0) {
+            this.mImageLoader.initImageView(bigPicHolder.imageView, ((ImageInfo) newsInfo.imageDTOList.get(0)).url);
         }
 
-        this.b(var5, var1);
-        this.a((NewsListAdapter.d) var5, (NewsInfo) var1);
-        return var2;
+        this.b(bigPicHolder, newsInfo);
+        this.a((NewsHolder) bigPicHolder, (NewsInfo) newsInfo);
+        return convertView;
     }
 
-    private View e(NewsInfo var1, View var2, int var3, ViewGroup var4) {
-        NewsListAdapter.b var5;
-        if (var2 == null) {
-            var2 = this.mLayoutInflater.inflate(NewsSettings.sLayoutType == LAYOUT_TYPE.LAYOUT_TYPE_IMAGE_TEXT ? R.layout.news_item_image_text : R.layout.news_item_text_image, var4, false);
-            var5 = new NewsListAdapter.b();
-            ViewStub var6 = (ViewStub) var2.findViewById(R.id.img_news_item_picture);
-            var5.a = this.mImageLoader.createImageView(var6);
-            this.a((View) var2, (NewsListAdapter.d) var5);
-            var2.setTag(var5);
+    private View e(NewsInfo newsInfo, View convertView, int position, ViewGroup parent) {
+        PicHolder var5;
+        if (convertView == null) {
+            convertView = this.mLayoutInflater.inflate(NewsSettings.sLayoutType == LAYOUT_TYPE.LAYOUT_TYPE_IMAGE_TEXT ? R.layout.news_item_image_text : R.layout.news_item_text_image, parent, false);
+            var5 = new PicHolder();
+            ViewStub var6 = (ViewStub) convertView.findViewById(R.id.img_news_item_picture);
+            var5.imageView = this.mImageLoader.createImageView(var6);
+            this.a((View) convertView, (NewsHolder) var5);
+            convertView.setTag(var5);
         } else {
-            var5 = (NewsListAdapter.b) var2.getTag();
+            var5 = (PicHolder) convertView.getTag();
         }
 
-        if (var1.imageDTOList != null && var1.imageDTOList.size() > 0) {
-            this.mImageLoader.initImageView(var5.a, ((ImageInfo) var1.imageDTOList.get(0)).url);
+        if (newsInfo.imageDTOList != null && newsInfo.imageDTOList.size() > 0) {
+            this.mImageLoader.initImageView(var5.imageView, ((ImageInfo) newsInfo.imageDTOList.get(0)).url);
         }
 
-        this.b(var5, var1);
-        this.a((NewsListAdapter.d) var5, (NewsInfo) var1);
-        return var2;
+        this.b(var5, newsInfo);
+        this.a((NewsHolder) var5, (NewsInfo) newsInfo);
+        return convertView;
     }
 
-    private void a(View var1, NewsListAdapter.d var2) {
+    private void a(View var1, NewsHolder var2) {
         var2.f = (TextView) var1.findViewById(R.id.txt_news_item_title);
         var2.g = (ImageView) var1.findViewById(R.id.img_news_item_marker);
         var2.h = (TextView) var1.findViewById(R.id.txt_news_item_time);
         var2.e = (TextView) var1.findViewById(R.id.txt_news_item_source);
     }
 
-    private void a(NewsListAdapter.d var1, NewsInfo var2) {
+    private void a(NewsHolder var1, NewsInfo var2) {
+        if (var2 == null) return;
         var1.g.setVisibility(View.VISIBLE);
         var1.e.setText(var2.origin);
         var1.h.setText(DateUtil.getDateDiff(var2.publishTime));
@@ -256,13 +261,13 @@ public class NewsListAdapter extends BaseAdapter {
 
     }
 
-    private void b(NewsListAdapter.d var1, NewsInfo var2) {
+    private void b(NewsHolder var1, NewsInfo var2) {
         var1.f.setText(TextUtils.isEmpty(var2.title) ? var2.summary : var2.title);
     }
 
     public void setNewsIsRead(Object var1) {
-        if (var1 instanceof NewsListAdapter.d) {
-            NewsListAdapter.d var2 = (NewsListAdapter.d) var1;
+        if (var1 instanceof NewsHolder) {
+            NewsHolder var2 = (NewsHolder) var1;
             var2.f.setTextColor(-6710887);
             var2.h.setTextColor(-6710887);
             var2.e.setTextColor(-6710887);
@@ -309,7 +314,7 @@ public class NewsListAdapter extends BaseAdapter {
         NEWS_INFO.layoutType = "REFRESH_BAR";
     }
 
-    static class a extends NewsListAdapter.d {
+    static class a extends NewsHolder {
         View a;
         TextView b;
         SimpleDraweeView c;
@@ -324,7 +329,7 @@ public class NewsListAdapter extends BaseAdapter {
         }
     }
 
-    static class c extends NewsListAdapter.d {
+    static class c extends NewsHolder {
         View a;
         View b;
         View c;
@@ -333,20 +338,20 @@ public class NewsListAdapter extends BaseAdapter {
         }
     }
 
-    static class b extends NewsListAdapter.d {
-        View a;
+    static class PicHolder extends NewsHolder {
+        View imageView;
 
-        b() {
+        PicHolder() {
         }
     }
 
-    static class d {
+    static class NewsHolder {
         TextView e;
         TextView f;
         ImageView g;
         TextView h;
 
-        d() {
+        NewsHolder() {
         }
     }
 }

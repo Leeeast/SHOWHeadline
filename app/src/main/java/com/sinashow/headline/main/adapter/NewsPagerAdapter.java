@@ -1,5 +1,5 @@
 //
-// Source code recreated from a .class file by IntelliJ IDEA
+// Source code recreated from imageView .class file by IntelliJ IDEA
 // (powered by Fernflower decompiler)
 //
 
