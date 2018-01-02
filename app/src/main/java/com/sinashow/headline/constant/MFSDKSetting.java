@@ -22,10 +22,6 @@ public class MFSDKSetting {
     // online
     public static final String DEFAULT_APP_ID = "69cad858a4c4783928323f012c2535ed";
     public static final String DEFAULT_APP_SECRET = "3075bc2cd644c3da5a8512b9d9669405";
-//
-//    public static final String DEFAULT_APP_ID = "4c92fbfc2e6e7046d6e3cafced6dbd8a";
-//    public static final String DEFAULT_APP_SECRET = "b430f8362f9f65bc09a639f62b41cfaa";
-
 
     public static final String KEY_URL = "url";
 }

@@ -4,9 +4,9 @@ package com.sinashow.headline.okhttp.request;
 
 
 
-import com.art.huakai.artshow.okhttp.OkHttpUtils;
-import com.art.huakai.artshow.okhttp.callback.Callback;
-import com.art.huakai.artshow.okhttp.utils.Exceptions;
+import com.sinashow.headline.okhttp.OkHttpUtils;
+import com.sinashow.headline.okhttp.callback.Callback;
+import com.sinashow.headline.okhttp.utils.Exceptions;
 
 import java.io.File;
 import java.util.Map;

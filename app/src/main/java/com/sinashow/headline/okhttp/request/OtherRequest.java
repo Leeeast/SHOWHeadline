@@ -2,8 +2,8 @@ package com.sinashow.headline.okhttp.request;
 
 import android.text.TextUtils;
 
-import com.art.huakai.artshow.okhttp.OkHttpUtils;
-import com.art.huakai.artshow.okhttp.utils.Exceptions;
+import com.sinashow.headline.okhttp.OkHttpUtils;
+import com.sinashow.headline.okhttp.utils.Exceptions;
 
 import java.util.Map;
 

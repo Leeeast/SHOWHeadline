@@ -90,7 +90,7 @@ public class RequestUtil {
                     try {
                         JSONObject jsonObject = new JSONObject(response);
                         int code = jsonObject.optInt("code");
-                        String msg = jsonObject.optString("msg");
+                        String msg = jsonObject.optString("message");
                         String data = jsonObject.optString("data");
                         int totalCount = jsonObject.optInt("totalCount");
                         if (ResponseCodeCheck.checkResponseCode(code)) {
@@ -138,7 +138,7 @@ public class RequestUtil {
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             int code = jsonObject.optInt("code");
-                            String msg = jsonObject.optString("msg");
+                            String msg = jsonObject.optString("message");
                             String data = jsonObject.optString("data");
                             if (ResponseCodeCheck.checkResponseCode(code)) {
                                 listener.onSuccess(true, data, code, id);
@@ -192,7 +192,7 @@ public class RequestUtil {
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             int code = jsonObject.optInt("code");
-                            String msg = jsonObject.optString("msg");
+                            String msg = jsonObject.optString("message");
                             String data = jsonObject.optString("data");
                             if (ResponseCodeCheck.checkResponseCode(code)) {
                                 listener.onSuccess(true, data, code, id);
@@ -318,7 +318,7 @@ public class RequestUtil {
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             int code = jsonObject.optInt("code");
-                            String msg = jsonObject.optString("msg");
+                            String msg = jsonObject.optString("message");
                             String data = jsonObject.optString("data");
                             if (ResponseCodeCheck.checkResponseCode(code)) {
                                 listener.onSuccess(true, data, code, id);
