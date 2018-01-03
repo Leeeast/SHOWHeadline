@@ -18,6 +18,15 @@
             android:background="@mipmap/ic_action_back" />
 
         <ImageView
+            android:id="@+id/iv_close"
+            android:layout_width="@dimen/DIMEN_40PX"
+            android:layout_height="@dimen/DIMEN_40PX"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/DIMEN_40PX"
+            android:background="@mipmap/ic_action_close"
+            android:visibility="gone" />
+
+        <ImageView
             android:id="@+id/iv_more"
             android:layout_width="@dimen/DIMEN_40PX"
             android:layout_height="@dimen/DIMEN_40PX"

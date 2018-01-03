@@ -10,10 +10,13 @@ import android.view.animation.AnimationUtils;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.FrameLayout;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.sinashow.headline.R;
 import com.sinashow.headline.constant.MFSDKSetting;
+import com.sinashow.headline.utils.DeviceUtils;
 import com.sinashow.headline.utils.WebViewSettings;
 import com.sinashow.headline.utils.statusBar.ImmerseStatusBar;
 
@@ -21,7 +24,7 @@ import com.sinashow.headline.utils.statusBar.ImmerseStatusBar;
 /**
  * Created by bruceli on 2015/8/7.
  */
-public class WebEmbedActivity extends Activity {
+public class WebEmbedActivity extends Activity implements View.OnClickListener {
 
 
     private WebView mWebView = null;
@@ -31,7 +34,7 @@ public class WebEmbedActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ImmerseStatusBar.setImmerseStatusBar(this, R.color.status_bar);
+        ImmerseStatusBar.setImmerseStatusBar(this, R.color.transparent);
         setContentView(R.layout.activity_web_embed);
         mWebView = (WebView) findViewById(R.id.wb_embed_details);
         WebViewSettings.initSettings(mWebView, false);
@@ -95,9 +98,19 @@ public class WebEmbedActivity extends Activity {
         findViewById(R.id.iv_main_back).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                onBackPressed();
             }
         });
+        View ivClose = findViewById(R.id.iv_close);
+        ivClose.setVisibility(View.VISIBLE);
+        ivClose.setOnClickListener(this);
+        findViewById(R.id.iv_more).setOnClickListener(this);
+        findViewById(R.id.iv_share).setOnClickListener(this);
+
+        FrameLayout flyTitleToot = findViewById(R.id.fly_title_root);
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) flyTitleToot.getLayoutParams();
+        layoutParams.topMargin = DeviceUtils.getStatusBarHeight(this);
+
     }
 
     @Override
@@ -132,5 +145,18 @@ public class WebEmbedActivity extends Activity {
     public void finish() {
         super.finish();
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.iv_close:
+                finish();
+                break;
+            case R.id.iv_more:
+            case R.id.iv_share:
+                Toast.makeText(this, "攻城狮努力开发中...", Toast.LENGTH_SHORT).show();
+                break;
+        }
     }
 }
