@@ -244,153 +244,153 @@ public class NewsFragment extends Fragment implements OnItemClickListener {
             since = this.mNewsListAdapter.getItem(this.mNewsListAdapter.getCount() - 1).publishTime;
             url = String.format(Constant.URL_MESSAGE_LIST_UP, 10, this.mChannelId, String.valueOf(since));
         }
-        RequestUtil.request(false, url, null, 10, new RequestUtil.RequestListener() {
-            @Override
-            public void onSuccess(boolean isSuccess, String obj, int code, int id) {
-                NewsFragment.this.mPullToRefresh.onRefreshComplete();
-                if (isSuccess) {
-                    try {
-                        LogUtil.i("news_list", obj);
-                        List<NewsInfo> newsInfos = GsonTools.parseDatas(obj, NewsInfo.class);
-                        if (newsInfos != null) {
-                            int size = newsInfos.size();
-                            if (refresh == 0) {
-                                if (NewsFragment.this.isAdded()) {
-                                    String loadResult;
-                                    if (size > 0) {
-                                        loadResult = NewsFragment.this.getString(R.string.feed_load_count, new Object[]{Integer.valueOf(size)});
-                                    } else {
-                                        loadResult = NewsFragment.this.getString(R.string.feed_no_more_load);
-                                    }
-                                    NewsFragment.this.showLoadResult(loadResult);
-                                }
-
-                                NewsFragment.this.mNewsListAdapter.addNewsList(newsInfos);
-
-                                NewsStore.addNewsList(NewsFragment.this.getContext(), NewsFragment.this.mChannelId, newsInfos);
-                                ((ListView) NewsFragment.this.mPullToRefresh.getRefreshableView()).setSelection(0);
-                            } else {
-                                if (size > 0) {
-                                    NewsFragment.this.mNewsListAdapter.appendDataList(newsInfos);
-                                    NewsFragment.this.mNewsListAdapter.notifyDataSetChanged();
-                                } else {
-                                    NewsFragment.this.addFootView();
-                                }
-
-                                if (NewsFragment.this.mHeadView != null) {
-                                    NewsFragment.this.mHeadView.setVisibility(View.GONE);
-                                }
-                            }
-                        } else if (refresh == 1) {
-                            final ImageView ivLoading = (ImageView) NewsFragment.this.mHeadView.findViewById(R.id.iv_loading);
-                            ((AnimationDrawable) ivLoading.getDrawable()).stop();
-                            ivLoading.setVisibility(View.GONE);
-                            final TextView tvLoading = (TextView) NewsFragment.this.mHeadView.findViewById(R.id.tv_loading);
-                            tvLoading.setText("点击加载更多内容");
-                            NewsFragment.this.mHeadView.setOnClickListener(new OnClickListener() {
-                                public void onClick(View var1x) {
-                                    NewsFragment.this.mHeadView.setVisibility(View.GONE);
-                                    ivLoading.setVisibility(View.VISIBLE);
-                                    tvLoading.setText("加载中");
-                                    NewsFragment.this.loadNewsList(1);
-                                }
-                            });
-                        } else {
-
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                } else {
-                    if (NewsFragment.this.isAdded()) {
-                        switch (code) {
-                            case 10001:
-                            case 20002:
-                                NewsFragment.this.showLoadResult(NewsFragment.this.getString(R.string.feed_timeout_tips));
-                                break;
-                        }
-                    }
-                }
-            }
-
-            @Override
-            public void onFailed(Call call, Exception e, int id) {
-                call.cancel();
-                NewsFragment.this.mPullToRefresh.onRefreshComplete();
-            }
-        });
-
-//        HttpCreator.readNewsList2(this.getContext(), this.mChannelId, refresh == 0, 10, since, new HttpCallback<Responses.NEWS_LIST>() {
+//        RequestUtil.request(false, url, null, 10, new RequestUtil.RequestListener() {
 //            @Override
-//            public void onCompleted(Responses.NEWS_LIST var1x, HttpError httpError) {
-//                if (var1x != null && var1x.data != null) {
-//                    LogUtil.i("news_list", "var1x.data = " + ((List) var1x.data));
-//                    List<NewsInfo> data = var1x.data;
-//                    int size = ((List) var1x.data).size();
-//                    if (refresh == 0) {
-//                        if (NewsFragment.this.isAdded()) {
-//                            String loadResult;
-//                            if (size > 0) {
-//                                loadResult = NewsFragment.this.getString(R.string.feed_load_count, new Object[]{Integer.valueOf(size)});
+//            public void onSuccess(boolean isSuccess, String obj, int code, int id) {
+//                NewsFragment.this.mPullToRefresh.onRefreshComplete();
+//                if (isSuccess) {
+//                    try {
+//                        LogUtil.i("news_list", obj);
+//                        List<NewsInfo> newsInfos = GsonTools.parseDatas(obj, NewsInfo.class);
+//                        if (newsInfos != null) {
+//                            int size = newsInfos.size();
+//                            if (refresh == 0) {
+//                                if (NewsFragment.this.isAdded()) {
+//                                    String loadResult;
+//                                    if (size > 0) {
+//                                        loadResult = NewsFragment.this.getString(R.string.feed_load_count, new Object[]{Integer.valueOf(size)});
+//                                    } else {
+//                                        loadResult = NewsFragment.this.getString(R.string.feed_no_more_load);
+//                                    }
+//                                    NewsFragment.this.showLoadResult(loadResult);
+//                                }
+//
+//                                NewsFragment.this.mNewsListAdapter.addNewsList(newsInfos);
+//
+//                                NewsStore.addNewsList(NewsFragment.this.getContext(), NewsFragment.this.mChannelId, newsInfos);
+//                                ((ListView) NewsFragment.this.mPullToRefresh.getRefreshableView()).setSelection(0);
 //                            } else {
-//                                loadResult = NewsFragment.this.getString(R.string.feed_no_more_load);
+//                                if (size > 0) {
+//                                    NewsFragment.this.mNewsListAdapter.appendDataList(newsInfos);
+//                                    NewsFragment.this.mNewsListAdapter.notifyDataSetChanged();
+//                                } else {
+//                                    NewsFragment.this.addFootView();
+//                                }
+//
+//                                if (NewsFragment.this.mHeadView != null) {
+//                                    NewsFragment.this.mHeadView.setVisibility(View.GONE);
+//                                }
 //                            }
-//                            NewsFragment.this.showLoadResult(loadResult);
-//                        }
-//
-//                        NewsFragment.this.mNewsListAdapter.addNewsList((List) var1x.data);
-//
-//                        NewsStore.addNewsList(NewsFragment.this.getContext(), NewsFragment.this.mChannelId, (List) var1x.data);
-//                        ((ListView) NewsFragment.this.mPullToRefresh.getRefreshableView()).setSelection(0);
-//                    } else {
-//                        if (size > 0) {
-//                            NewsFragment.this.mNewsListAdapter.appendDataList((List) var1x.data);
-//                            NewsFragment.this.mNewsListAdapter.notifyDataSetChanged();
+//                        } else if (refresh == 1) {
+//                            final ImageView ivLoading = (ImageView) NewsFragment.this.mHeadView.findViewById(R.id.iv_loading);
+//                            ((AnimationDrawable) ivLoading.getDrawable()).stop();
+//                            ivLoading.setVisibility(View.GONE);
+//                            final TextView tvLoading = (TextView) NewsFragment.this.mHeadView.findViewById(R.id.tv_loading);
+//                            tvLoading.setText("点击加载更多内容");
+//                            NewsFragment.this.mHeadView.setOnClickListener(new OnClickListener() {
+//                                public void onClick(View var1x) {
+//                                    NewsFragment.this.mHeadView.setVisibility(View.GONE);
+//                                    ivLoading.setVisibility(View.VISIBLE);
+//                                    tvLoading.setText("加载中");
+//                                    NewsFragment.this.loadNewsList(1);
+//                                }
+//                            });
 //                        } else {
-//                            NewsFragment.this.addFootView();
-//                        }
 //
-//                        if (NewsFragment.this.mHeadView != null) {
-//                            NewsFragment.this.mHeadView.setVisibility(View.GONE);
+//                        }
+//                    } catch (Exception e) {
+//                        e.printStackTrace();
+//                    }
+//                } else {
+//                    if (NewsFragment.this.isAdded()) {
+//                        switch (code) {
+//                            case 10001:
+//                            case 20002:
+//                                NewsFragment.this.showLoadResult(NewsFragment.this.getString(R.string.feed_timeout_tips));
+//                                break;
 //                        }
 //                    }
-//                } else if (refresh == 1) {
-//                    final ImageView var3 = (ImageView) NewsFragment.this.mHeadView.findViewById(R.id.iv_loading);
-//                    ((AnimationDrawable) var3.getDrawable()).stop();
-//                    var3.setVisibility(View.GONE);
-//                    final TextView var4 = (TextView) NewsFragment.this.mHeadView.findViewById(R.id.tv_loading);
-//                    var4.setText("点击加载更多内容");
-//                    NewsFragment.this.mHeadView.setOnClickListener(new OnClickListener() {
-//                        public void onClick(View var1x) {
-//                            NewsFragment.this.mHeadView.setVisibility(View.GONE);
-//                            var3.setVisibility(View.VISIBLE);
-//                            var4.setText("加载中");
-//                            NewsFragment.this.loadNewsList(1);
-//                        }
-//                    });
-//                } else {
-////                    if (NewsFragment.this.isAdded()) {
-////                        switch (null.a[httpError.ordinal()]) {
-////                            case 1:
-////                                NewsFragment.this.a(NewsFragment.this.getString(string.feed_timeout_tips));
-////                                break;
-////                            case 2:
-////                            case 3:
-////                                if (!NetworkMonitor.isAvailable()) {
-////                                    NewsFragment.this.a(NewsFragment.this.getString(string.feed_neterror_tips));
-////                                }
-////                                break;
-////                            case 4:
-////                                NewsFragment.this.a(NewsFragment.this.getString(string.feed_timeout_tips));
-////                        }
-////                    }
-//
-//                    ((ListView) NewsFragment.this.mPullToRefresh.getRefreshableView()).setSelection(0);
 //                }
+//            }
 //
+//            @Override
+//            public void onFailed(Call call, Exception e, int id) {
+//                call.cancel();
 //                NewsFragment.this.mPullToRefresh.onRefreshComplete();
 //            }
 //        });
+
+        HttpCreator.readNewsList2(this.getContext(), this.mChannelId, refresh == 0, 10, since, new HttpCallback<Responses.NEWS_LIST>() {
+            @Override
+            public void onCompleted(Responses.NEWS_LIST var1x, HttpError httpError) {
+                if (var1x != null && var1x.data != null) {
+                    LogUtil.i("news_list", "var1x.data = " + ((List) var1x.data));
+                    List<NewsInfo> data = var1x.data;
+                    int size = ((List) var1x.data).size();
+                    if (refresh == 0) {
+                        if (NewsFragment.this.isAdded()) {
+                            String loadResult;
+                            if (size > 0) {
+                                loadResult = NewsFragment.this.getString(R.string.feed_load_count, new Object[]{Integer.valueOf(size)});
+                            } else {
+                                loadResult = NewsFragment.this.getString(R.string.feed_no_more_load);
+                            }
+                            NewsFragment.this.showLoadResult(loadResult);
+                        }
+
+                        NewsFragment.this.mNewsListAdapter.addNewsList((List) var1x.data);
+
+                        NewsStore.addNewsList(NewsFragment.this.getContext(), NewsFragment.this.mChannelId, (List) var1x.data);
+                        ((ListView) NewsFragment.this.mPullToRefresh.getRefreshableView()).setSelection(0);
+                    } else {
+                        if (size > 0) {
+                            NewsFragment.this.mNewsListAdapter.appendDataList((List) var1x.data);
+                            NewsFragment.this.mNewsListAdapter.notifyDataSetChanged();
+                        } else {
+                            NewsFragment.this.addFootView();
+                        }
+
+                        if (NewsFragment.this.mHeadView != null) {
+                            NewsFragment.this.mHeadView.setVisibility(View.GONE);
+                        }
+                    }
+                } else if (refresh == 1) {
+                    final ImageView var3 = (ImageView) NewsFragment.this.mHeadView.findViewById(R.id.iv_loading);
+                    ((AnimationDrawable) var3.getDrawable()).stop();
+                    var3.setVisibility(View.GONE);
+                    final TextView var4 = (TextView) NewsFragment.this.mHeadView.findViewById(R.id.tv_loading);
+                    var4.setText("点击加载更多内容");
+                    NewsFragment.this.mHeadView.setOnClickListener(new OnClickListener() {
+                        public void onClick(View var1x) {
+                            NewsFragment.this.mHeadView.setVisibility(View.GONE);
+                            var3.setVisibility(View.VISIBLE);
+                            var4.setText("加载中");
+                            NewsFragment.this.loadNewsList(1);
+                        }
+                    });
+                } else {
+//                    if (NewsFragment.this.isAdded()) {
+//                        switch (null.a[httpError.ordinal()]) {
+//                            case 1:
+//                                NewsFragment.this.a(NewsFragment.this.getString(string.feed_timeout_tips));
+//                                break;
+//                            case 2:
+//                            case 3:
+//                                if (!NetworkMonitor.isAvailable()) {
+//                                    NewsFragment.this.a(NewsFragment.this.getString(string.feed_neterror_tips));
+//                                }
+//                                break;
+//                            case 4:
+//                                NewsFragment.this.a(NewsFragment.this.getString(string.feed_timeout_tips));
+//                        }
+//                    }
+
+                    ((ListView) NewsFragment.this.mPullToRefresh.getRefreshableView()).setSelection(0);
+                }
+
+                NewsFragment.this.mPullToRefresh.onRefreshComplete();
+            }
+        });
     }
 
     private void showLoadResult(String lable) {
