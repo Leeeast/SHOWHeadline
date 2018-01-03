@@ -22,7 +22,7 @@
         android:singleLine="true"
         android:textColor="#8D8D8D"
         android:textSize="@dimen/DIMEN_8PX"
-        android:visibility="visible" />
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/txt_news_item_time"

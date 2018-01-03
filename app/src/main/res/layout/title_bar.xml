@@ -11,11 +11,10 @@
 
     <com.sinashow.headline.widget.TabPageIndicator
         android:id="@+id/indicator"
-        android:layout_width="@dimen/x968"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/y10"
+        android:layout_marginTop="@dimen/DIMEN_3PX"
         android:layout_weight="1.0" />
-
 
     <LinearLayout
         android:id="@+id/channel_man_title"
@@ -38,11 +37,11 @@
 
     <ImageView
         android:id="@+id/channel_edit"
-        android:layout_width="@dimen/x112"
-        android:layout_height="@dimen/y130"
+        android:layout_width="@dimen/DIMEN_33PX"
+        android:layout_height="@dimen/DIMEN_23PX"
+        android:layout_gravity="center_vertical"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
-        android:paddingTop="@dimen/y10"
         android:src="@mipmap/channel_edit"
-        android:visibility="gone" />
+        android:visibility="visible" />
 </LinearLayout>

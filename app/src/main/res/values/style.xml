@@ -38,4 +38,13 @@
         <item name="android:textColor">@color/title_text_color</item>
     </style>
 
+    <style name="VideoProgressBarStyle">
+        <item name="android:maxWidth">18.0dip</item>
+        <item name="android:maxHeight">18.0dip</item>
+        <item name="android:indeterminateDrawable">@anim/video_progressbar</item>
+        <item name="android:minWidth">18.0dip</item>
+        <item name="android:minHeight">18.0dip</item>
+    </style>
+
+
 </resources>

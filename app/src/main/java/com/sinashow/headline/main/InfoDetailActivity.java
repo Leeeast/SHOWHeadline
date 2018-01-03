@@ -9,10 +9,10 @@ import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.caishi.venus.api.bean.news.ImageInfo;
-import com.caishi.venus.details.DetailsFragment;
 import com.caishi.venus.details.NewsDetailsLoader;
 import com.sinashow.headline.R;
 import com.sinashow.headline.constant.MFSDKSetting;
+import com.sinashow.headline.main.fragment.DetailsFragment;
 import com.sinashow.headline.utils.DeviceUtils;
 import com.sinashow.headline.utils.statusBar.ImmerseStatusBar;
 
@@ -38,7 +38,7 @@ public class InfoDetailActivity extends Activity implements NewsDetailsLoader.We
 
         mFragment = DetailsFragment.newInstance(intent, flags);
         getFragmentManager().beginTransaction().replace(R.id.container, mFragment).commit();
-        mFragment.setWebViewListener(this);
+       // mFragment.setWebViewListener(this);
         findViewById(R.id.iv_main_back).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

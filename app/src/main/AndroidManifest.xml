@@ -31,6 +31,7 @@
         <activity android:name=".main.InfoDetailActivity" />
         <activity android:name=".main.ImageShowActivity" />
         <activity android:name=".main.WebEmbedActivity" />
+        <activity android:name=".videodetail.VideoActivity" />
 
     </application>
 

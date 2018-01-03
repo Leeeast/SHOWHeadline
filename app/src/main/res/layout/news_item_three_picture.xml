@@ -7,44 +7,45 @@
         android:id="@+id/txt_news_item_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/news_item_margin"
-        android:layout_marginRight="@dimen/news_item_margin"
-        android:layout_marginTop="@dimen/y20"
+        android:layout_marginLeft="@dimen/DIMEN_12PX"
+        android:layout_marginRight="@dimen/DIMEN_12PX"
+        android:layout_marginTop="@dimen/DIMEN_5PX"
         android:ellipsize="end"
-        android:lineSpacingExtra="@dimen/y20"
+        android:lineSpacingExtra="5dp"
         android:maxLines="2"
         android:textColor="#FF333333"
         android:textSize="@dimen/y45" />
 
     <LinearLayout
-        android:layout_centerHorizontal="true"
         android:id="@+id/ll_news_item_image"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_below="@id/txt_news_item_title"
+        android:layout_centerHorizontal="true"
         android:layout_marginLeft="@dimen/news_item_margin"
         android:layout_marginRight="@dimen/news_item_margin"
-        android:layout_marginTop="@dimen/y120">
+        android:layout_marginTop="@dimen/DIMEN_5PX"
+        android:orientation="horizontal">
 
         <ViewStub
             android:id="@+id/news_item_image"
             android:layout_width="@dimen/x322"
             android:layout_height="@dimen/y242"
-            android:layout_marginRight="@dimen/x28"
-            android:layout_gravity="start"/>
+            android:layout_gravity="start"
+            android:layout_marginRight="@dimen/x28" />
 
         <ViewStub
             android:id="@+id/img_news_item_3_pic_2"
-            android:layout_marginRight="@dimen/x28"
             android:layout_width="@dimen/x322"
             android:layout_height="@dimen/y242"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:layout_marginRight="@dimen/x28" />
 
         <ViewStub
             android:id="@+id/img_news_item_3_pic_3"
             android:layout_width="@dimen/x322"
             android:layout_height="@dimen/y242"
-            android:layout_gravity="end"/>
+            android:layout_gravity="end" />
 
     </LinearLayout>
 

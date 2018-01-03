@@ -5,6 +5,7 @@ import android.content.Context;
 
 import com.caishi.venus.ui.VenusApi;
 import com.caishi.venus.ui.config.NewsSettings;
+import com.danikula.videocache.HttpProxyCacheServer;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.sinashow.headline.constant.MFSDKSetting;
 import com.sinashow.headline.main.InfoDetailActivity;
@@ -15,12 +16,14 @@ import com.sinashow.headline.main.InfoDetailActivity;
 
 public class HeadlineApplication extends Application {
     public static HeadlineApplication showApplication;
+
     @Override
     public void onCreate() {
         super.onCreate();
         showApplication = this;
         init();
     }
+
     /**
      * 获取应用ApplicationContext
      *
@@ -43,5 +46,17 @@ public class HeadlineApplication extends Application {
         NewsSettings.MAX_NEWS_PER_CHANNEL = 100;
 
         VenusApi.initialize(this, MFSDKSetting.DEFAULT_APP_ID, MFSDKSetting.DEFAULT_APP_SECRET);
+    }
+
+
+    private HttpProxyCacheServer proxy;
+
+    public static HttpProxyCacheServer getProxy() {
+        HeadlineApplication app = HeadlineApplication.showApplication;
+        return app.proxy == null ? (app.proxy = app.newProxy()) : app.proxy;
+    }
+
+    private HttpProxyCacheServer newProxy() {
+        return new HttpProxyCacheServer(this);
     }
 }

@@ -29,8 +29,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.caishi.venus.VenusWebEmbedActivity;
+import com.caishi.venus.api.bean.http.HttpError;
 import com.caishi.venus.api.bean.news.NewsInfo;
+import com.caishi.venus.api.bean.resp.Responses;
 import com.caishi.venus.api.misc.LogCat;
+import com.caishi.venus.api.remote.HttpCallback;
+import com.caishi.venus.api.remote.HttpCreator;
 import com.caishi.venus.api.remote.HttpMessage;
 import com.caishi.venus.details.NewsDetailsLoader;
 import com.caishi.venus.ui.config.NewsSettings;
@@ -41,6 +45,7 @@ import com.caishi.venus.ui.view.pulltorefresh.PullToRefreshBase.OnRefreshListene
 import com.caishi.venus.ui.view.pulltorefresh.PullToRefreshListView;
 import com.sinashow.headline.R;
 import com.sinashow.headline.constant.Constant;
+import com.sinashow.headline.main.WebEmbedActivity;
 import com.sinashow.headline.main.adapter.NewsListAdapter;
 import com.sinashow.headline.okhttp.RequestUtil;
 import com.sinashow.headline.utils.GsonTools;
@@ -315,9 +320,9 @@ public class NewsFragment extends Fragment implements OnItemClickListener {
             }
         });
 
-//        HttpCreator.readNewsList2(this.getContext(), this.mChannelId, refresh == 0, 10, since, new HttpCallback<NEWS_LIST>() {
+//        HttpCreator.readNewsList2(this.getContext(), this.mChannelId, refresh == 0, 10, since, new HttpCallback<Responses.NEWS_LIST>() {
 //            @Override
-//            public void onCompleted(NEWS_LIST var1x, HttpError httpError) {
+//            public void onCompleted(Responses.NEWS_LIST var1x, HttpError httpError) {
 //                if (var1x != null && var1x.data != null) {
 //                    LogUtil.i("news_list", "var1x.data = " + ((List) var1x.data));
 //                    List<NewsInfo> data = var1x.data;
@@ -425,11 +430,14 @@ public class NewsFragment extends Fragment implements OnItemClickListener {
                 var8.onClick(this.mChannelId, 1, this.mActionDownX, this.mActionDownY - var2.getY(), this.mActionUpX, this.mActionUpY - var2.getY(), var2.getWidth(), var2.getHeight());
                 this.startActivity((new Intent(this.getActivity(), VenusWebEmbedActivity.class)).putExtra("url", var8.detailUrl));
             } else {
-                Intent var9 = NewsDetailsLoader.initNewsExtra(new Intent(this.getContext(), NewsSettings.sDetailsActivity), this.mChannelId, var8);
-                this.startActivity(var9);
+//                Intent var9 = NewsDetailsLoader.initNewsExtra(new Intent(this.getContext(), NewsSettings.sDetailsActivity), this.mChannelId, var8);
+//                this.startActivity(var9);
                 var8.isRead = true;
                 var7.setNewsIsRead(var2.getTag());
-                NewsStore.updateNewsInfo(var8);
+//                NewsStore.updateNewsInfo(var8);
+
+                var8.onClick(this.mChannelId, 1, this.mActionDownX, this.mActionDownY - var2.getY(), this.mActionUpX, this.mActionUpY - var2.getY(), var2.getWidth(), var2.getHeight());
+                this.startActivity((new Intent(this.getActivity(), WebEmbedActivity.class)).putExtra("url", var8.shareLink));
             }
         }
     }

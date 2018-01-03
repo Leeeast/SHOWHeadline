@@ -27,6 +27,7 @@ import com.sinashow.headline.R;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class NewsListAdapter extends BaseAdapter {
     private final Activity mActivity;
@@ -34,11 +35,13 @@ public class NewsListAdapter extends BaseAdapter {
     private final List<NewsInfo> newsInfoList = new ArrayList();
     private final ImageLoader mImageLoader;
     private static final NewsInfo NEWS_INFO = new NewsInfo();
+    private Random mRandom;
 
     public NewsListAdapter(Activity activity) {
         this.mActivity = activity;
         this.mLayoutInflater = this.mActivity.getLayoutInflater();
         this.mImageLoader = ImageLoader.getInstance();
+        this.mRandom = new Random();
     }
 
     public int getCount() {
@@ -65,9 +68,25 @@ public class NewsListAdapter extends BaseAdapter {
         } else {
             if (position % 2 == 0) {
                 return 0;
+            } else if (position % 5 == 0) {
+                return 2;
+            } else if (position % 7 == 0) {
+                return 5;
             } else {
                 return 1;
             }
+//            position = mRandom.nextInt(100);
+//            if (position % 2 == 0) {
+//                return 0;
+//            } else if (position % 5 == 0) {
+//                return 2;
+//            } else if (position % 7 == 0) {
+//                return 5;
+//            } else if (position % 9 == 0) {
+//                return 6;
+//            } else {
+//                return 1;
+//            }
         }
     }
 
@@ -79,23 +98,23 @@ public class NewsListAdapter extends BaseAdapter {
             case 0:
                 return this.inflateTypeBigPic(newsInfo, convertView, position, parent);
             case 1:
-                return this.e(newsInfo, convertView, position, parent);
+                return this.inflateTypeTxtImg(newsInfo, convertView, position, parent);
             case 2:
-                return this.c(newsInfo, convertView, position, parent);
+                return this.inflateTypeJoke(newsInfo, convertView, position, parent);
             case 3:
-                return this.e(newsInfo, convertView, position, parent);
+                return this.inflateTypeTxtImg(newsInfo, convertView, position, parent);
             case 4:
                 return this.mLayoutInflater.inflate(R.layout.news_item_refresh_bar, (ViewGroup) null);
             case 5:
-                return this.b(newsInfo, convertView, position, parent);
+                return this.inflateTypeThreePic(newsInfo, convertView, position, parent);
             case 6:
-                return this.a(newsInfo, convertView, position, parent);
+                return this.inflateTypeAdLarge(newsInfo, convertView, position, parent);
             default:
                 return convertView;
         }
     }
 
-    private View a(NewsInfo newsInfo, View convertView, int position, ViewGroup parent) {
+    private View inflateTypeAdLarge(NewsInfo newsInfo, View convertView, int position, ViewGroup parent) {
         NewsListAdapter.a var5;
         if (convertView == null) {
             convertView = this.mLayoutInflater.inflate(R.layout.news_item_ad_large, parent, false);
@@ -131,7 +150,7 @@ public class NewsListAdapter extends BaseAdapter {
         return convertView;
     }
 
-    private View b(NewsInfo newsInfo, View convertView, int position, ViewGroup parent) {
+    private View inflateTypeThreePic(NewsInfo newsInfo, View convertView, int position, ViewGroup parent) {
         NewsListAdapter.c var5;
         if (convertView == null) {
             convertView = this.mLayoutInflater.inflate(R.layout.news_item_three_picture, parent, false);
@@ -167,7 +186,7 @@ public class NewsListAdapter extends BaseAdapter {
         return convertView;
     }
 
-    private View c(NewsInfo newsInfo, View convertView, int position, ViewGroup parent) {
+    private View inflateTypeJoke(NewsInfo newsInfo, View convertView, int position, ViewGroup parent) {
         NewsHolder var5;
         if (convertView == null) {
             convertView = this.mLayoutInflater.inflate(R.layout.news_item_joke_view, parent, false);
@@ -205,7 +224,7 @@ public class NewsListAdapter extends BaseAdapter {
         return convertView;
     }
 
-    private View e(NewsInfo newsInfo, View convertView, int position, ViewGroup parent) {
+    private View inflateTypeTxtImg(NewsInfo newsInfo, View convertView, int position, ViewGroup parent) {
         PicHolder var5;
         if (convertView == null) {
             convertView = this.mLayoutInflater.inflate(NewsSettings.sLayoutType == LAYOUT_TYPE.LAYOUT_TYPE_IMAGE_TEXT ? R.layout.news_item_image_text : R.layout.news_item_text_image, parent, false);
@@ -268,6 +287,7 @@ public class NewsListAdapter extends BaseAdapter {
     public void setNewsIsRead(Object var1) {
         if (var1 instanceof NewsHolder) {
             NewsHolder var2 = (NewsHolder) var1;
+            if (var2.f == null || var2.h == null || var2.e == null) return;
             var2.f.setTextColor(-6710887);
             var2.h.setTextColor(-6710887);
             var2.e.setTextColor(-6710887);

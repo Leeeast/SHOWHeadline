@@ -92,7 +92,7 @@ public class WebEmbedActivity extends Activity {
         mProgressBar = (ProgressBar) findViewById(R.id.pbar_detail_progressbar);
         mProgressBar.setVisibility(View.VISIBLE);
 
-        findViewById(R.id.btn_back).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.iv_main_back).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
