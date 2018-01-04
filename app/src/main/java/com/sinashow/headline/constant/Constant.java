@@ -41,4 +41,9 @@ public class Constant {
             "&appSecret=" + MFSDKSetting.DEFAULT_APP_SECRET +
             "&channelId=%s" +
             "&userId=%s";
+
+    /**
+     * 帖子链接
+     */
+    public static final String URL_TOPIC = URL_MF_BASE + "/sdk/hsdt1/app/share/topic.html?id=2abefae6757ab4fbc312637d93d59360";
 }

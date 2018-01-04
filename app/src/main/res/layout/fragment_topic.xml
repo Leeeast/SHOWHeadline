@@ -4,6 +4,33 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <include
+        android:id="@+id/title_topic"
+        layout="@layout/layout_title_main"
+        android:visibility="visible" />
 
-    <include layout="@layout/layout_title_main" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/title_bar">
+
+
+        <WebView
+            android:id="@+id/wb_embed_details"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible" />
+
+        <ProgressBar
+            android:id="@+id/pbar_detail_progressbar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="3.0dip"
+            android:layout_gravity="top"
+            android:background="#00000000"
+            android:indeterminateOnly="false"
+            android:max="100"
+            android:progressDrawable="@drawable/progress_bar_states"
+            android:visibility="gone" />
+    </FrameLayout>
 </LinearLayout>

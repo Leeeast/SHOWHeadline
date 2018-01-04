@@ -5,6 +5,7 @@
 
 package com.sinashow.headline.main.fragment;
 
+import android.accessibilityservice.GestureDescription;
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -12,6 +13,7 @@ import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -96,6 +98,7 @@ public class NewsFragment extends Fragment implements OnItemClickListener {
         ImageView ivLoading = (ImageView) this.mHeadView.findViewById(R.id.iv_loading);
         ((AnimationDrawable) ivLoading.getDrawable()).start();
         return var1.inflate(R.layout.news_fragment, viewGroup, false);
+
     }
 
     @SuppressLint("ClickableViewAccessibility")

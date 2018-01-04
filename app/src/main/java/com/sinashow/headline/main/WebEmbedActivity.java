@@ -1,6 +1,7 @@
 package com.sinashow.headline.main;
 
 import android.app.Activity;
+import android.content.pm.PackageItemInfo;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -110,7 +111,6 @@ public class WebEmbedActivity extends Activity implements View.OnClickListener {
         FrameLayout flyTitleToot = findViewById(R.id.fly_title_root);
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) flyTitleToot.getLayoutParams();
         layoutParams.topMargin = DeviceUtils.getStatusBarHeight(this);
-
     }
 
     @Override
